@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <link rel="manifest" href="/manifest.json">
+    <style>
+    section{
+        border:5px solid gray;
+        margin-bottom: 10px;
+        text-align: center;
+    }
+    </style>
+</head>
+<body>
+<h1>您的通知服務設定</h1>
+<section>
+    <h2>訂閱者編號</h2>
+    <p id="subscriptionInfo"></p>
+    <h2>終點</h2>
+    <p id="endpointInfo"></p>
+
+</section>
+<h1>觸發push事件</h1>
+<h1>原始碼</h1>
+
+<h1>讀取進一步資料</h1>
+<script type="text/javascript">
+    var API_KEY='AIzaSyCj9Xzv62vfyrOnIH2eegcMsWo5_J43GYo';
+    var produceGCMProprietaryCURLCommand = function(subscription,ssl) {
+      var curlEndpoint = 'https://android.googleapis.com/gcm/send';
+      var endpointSections = subscription.endpoint.split('/');
+      var subscriptionId = endpointSections[endpointSections.length - 1];
+      var curlCommand = 'curl'+(ssl?' -k':'')+' --header "Authorization: key=' +
+        API_KEY + '" --header Content-Type:"application/json" ' +
+        curlEndpoint + ' -d "{\\"registration_ids\\":[\\"' +
+        subscriptionId + '\\"]}"';
+      return {
+          curlCommand:curlCommand,
+          subscriptionId:subscriptionId
+      };
+    };
+    navigator.serviceWorker.register('./service-worker.js');
+    
+    navigator.serviceWorker.ready.then(function(serviceWorkerRegistration) {
+        serviceWorkerRegistration.pushManager.subscribe({userVisibleOnly: true}).then(function(pushSubscription){
+                    document.querySelector("#subscriptionInfo").innerHTML=produceGCMProprietaryCURLCommand(pushSubscription).subscriptionId;
+                    document.querySelector("#endpointInfo").innerHTML=pushSubscription.endpoint;
+                    document.querySelector("#curlCom").innerHTML=produceGCMProprietaryCURLCommand(pushSubscription).curlCommand;
+                    document.querySelector("#curlCom_k").innerHTML=produceGCMProprietaryCURLCommand(pushSubscription,1).curlCommand;
+                });
+    });
+</script>
+</body>
+</html>
