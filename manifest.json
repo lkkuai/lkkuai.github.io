@@ -2,7 +2,7 @@
   "name": "service worker",
   "short_name": "sw",
   "icons": [{
-        "src": "https://simple-push-demo.appspot.com/images/touch/icon-128x128.png",
+        "src": "http://udn.com/static/img/logo.png?20160108",
         "sizes": "128x128"
       }],
   "start_url": "/index.html",
