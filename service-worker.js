@@ -1,8 +1,8 @@
 self.addEventListener('push', function(event) {  
   console.log('Received a push message', event);
 
-  var title = 'Hello';  
-  var body = 'This message is pushed by google\'s GCM';  
+  var title = '中文字';  
+  var body = '發送訊息';  
   var icon = 'http://udn.com/static/img/logo.png?20160108';  
   var tag = 'simple-push-demo-notification-tag';
 
