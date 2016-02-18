@@ -14,7 +14,7 @@ self.addEventListener('push', function(event) {
 
       // Examine the text in the response  
       return response.json().then(function(data) {  
-        console.log(data);
+        console.log(JSON.stringify(data));
         if (data.error || !data.notification) {  
           console.error('The API returned an error.', data.error);  
           throw new Error();  
