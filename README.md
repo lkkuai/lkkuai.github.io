@@ -1,6 +1,8 @@
 # lkkuai.github.io<br>
 test service worker
 
+this is very simple Chrome service worker sample 
+
 this a browser Chrome service worker sample use Google GCM 
 
 參考https://github.com/wengeezhang/wengeezhang.github.io
