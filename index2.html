@@ -15,16 +15,10 @@
 <body>
 <h1>您的通知服務設定</h1>
 <section>
-    <h2>訂閱者編號</h2>
+    <h2>訂閱者編號->請複制以下</h2>
     <p id="subscriptionInfo"></p>
-    <h2>終點</h2>
-    <p id="endpointInfo"></p>
 
 </section>
-<h1>觸發push事件</h1>
-<h1>原始碼</h1>
-
-<h1>讀取進一步資料</h1>
 <script type="text/javascript">
     var API_KEY='AIzaSyCj9Xzv62vfyrOnIH2eegcMsWo5_J43GYo';
     var produceGCMProprietaryCURLCommand = function(subscription,ssl) {
@@ -45,9 +39,9 @@
     navigator.serviceWorker.ready.then(function(serviceWorkerRegistration) {
         serviceWorkerRegistration.pushManager.subscribe({userVisibleOnly: true}).then(function(pushSubscription){
                     document.querySelector("#subscriptionInfo").innerHTML=produceGCMProprietaryCURLCommand(pushSubscription).subscriptionId;
-                    document.querySelector("#endpointInfo").innerHTML=pushSubscription.endpoint;
-                    document.querySelector("#curlCom").innerHTML=produceGCMProprietaryCURLCommand(pushSubscription).curlCommand;
-                    document.querySelector("#curlCom_k").innerHTML=produceGCMProprietaryCURLCommand(pushSubscription,1).curlCommand;
+                    //document.querySelector("#endpointInfo").innerHTML=pushSubscription.endpoint;
+                    //document.querySelector("#curlCom").innerHTML=produceGCMProprietaryCURLCommand(pushSubscription).curlCommand;
+                    //document.querySelector("#curlCom_k").innerHTML=produceGCMProprietaryCURLCommand(pushSubscription,1).curlCommand;
                 });
     });
 </script>
